@@ -1,0 +1,37 @@
+version: "3.1"
+
+services:
+  # dfa:
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile
+  #   image: dfa_nodejs
+  #   container_name: dfa-test-case
+  #   env_file: ./.env
+  #   networks:
+  #     - dfa_network
+  #   ports:
+  #     - "4000:4000"
+
+  postgres:
+    container_name: dfa-database
+    image: postgres
+    env_file: .env
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - dfa_network
+    ports:
+      - "5555:5432"
+
+volumes:
+  postgres:
+  pgadmin:
+
+networks:
+  dfa_network:
+    driver: bridge
