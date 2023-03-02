@@ -7,7 +7,8 @@ import cookie from '@fastify/cookie';
 
 import { COOKIE_SECRET, SERVER_HOST, SERVER_PORT } from './configs';
 import { logger } from './logs';
-// import userRouter from './routes/user.routes';
+import authRoutes from './routes/auth.routes';
+import userRoutes from './routes/user.routes';
 // import { swaggerOptions, swaggerUiOptions } from './lib/swagger';
 
 const server = fastify();
@@ -40,9 +41,13 @@ const restServer = async () => {
     // await server.register(fastifySwagger, swaggerOptions);
     // await server.register(fastifySwaggerUi, swaggerUiOptions);
 
-    // await server.register(userRouter, {
-    //   prefix: '/sso/user',
-    // });
+    await server.register(authRoutes, {
+      prefix: '/auth',
+    });
+
+    await server.register(userRoutes, {
+      prefix: '/user',
+    });
 
     await server.ready().then(() => {
       logger.info('Fastify successfully booted!');
