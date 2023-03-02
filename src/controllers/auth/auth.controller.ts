@@ -41,46 +41,4 @@ const LoginUserController = async (req: FastifyRequest<{Body: LoginUserDTO}>, re
   }
 };
 
-// const GetUserController = async (req: FastifyRequest<{Headers: { token: string}}>, reply: FastifyReply) => {
-//   if (!req.headers.token) {
-//     reply.code(500).send('Not authorized');
-//   }
-
-//   try {
-//     const user = await api.getUser(req.headers.token);
-
-//     reply.code(200).send(user);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
-
-// const UpdateUserDataController = async (req: FastifyRequest<{Headers: { token: string}, Body: UpdateUserTypes}>, reply: FastifyReply) => {
-//   if (!req.headers.token) {
-//     reply.code(500).send('Not authorized');
-//   }
-
-//   try {
-//     const updatedUser = await api.updateUserData(req.headers.token, req.body.email, req.body.password, req.body.nickName);
-
-//     reply.code(200).send(updatedUser);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
-
-// const DeleteUserHandler = async (req: FastifyRequest<{Headers: { token: string}}>, reply: FastifyReply) => {
-//   if (!req.headers.token) {
-//     reply.code(500).send('Not authorized');
-//   }
-
-//   try {
-//     const deleteUserReply = await api.deleteUser(req.headers.token);
-
-//     reply.code(200).send(deleteUserReply);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
-
 export { RegisterUserController, LoginUserController };
