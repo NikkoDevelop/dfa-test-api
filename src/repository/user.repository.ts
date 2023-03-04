@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import bcrypt from 'bcrypt';
 import prisma from '../prisma-client';
 

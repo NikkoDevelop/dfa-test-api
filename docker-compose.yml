@@ -1,17 +1,17 @@
 version: "3.1"
 
 services:
-  # dfa:
-  #   build:
-  #     context: ./
-  #     dockerfile: Dockerfile
-  #   image: dfa_nodejs
-  #   container_name: dfa-test-case
-  #   env_file: ./.env
-  #   networks:
-  #     - dfa_network
-  #   ports:
-  #     - "4000:4000"
+  dfa:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: dfa_nodejs
+    container_name: dfa-test-case
+    env_file: ./.env
+    networks:
+      - dfa_network
+    ports:
+      - "4000:4000"
 
   postgres:
     container_name: dfa-database

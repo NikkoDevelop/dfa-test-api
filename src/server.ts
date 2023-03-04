@@ -1,5 +1,6 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
+import fastifyMultipart from '@fastify/multipart';
 import type { FastifyCookieOptions } from '@fastify/cookie';
 import cookie from '@fastify/cookie';
 // import fastifySwagger from '@fastify/swagger';
@@ -7,6 +8,8 @@ import cookie from '@fastify/cookie';
 
 import { COOKIE_SECRET, SERVER_HOST, SERVER_PORT } from './configs';
 import { logger } from './logs';
+import imageRoutes from './routes/image.routes';
+import adminRoutes from './routes/admin.routes';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 // import { swaggerOptions, swaggerUiOptions } from './lib/swagger';
@@ -38,6 +41,8 @@ const restServer = async () => {
       },
     });
 
+    await server.register(fastifyMultipart);
+
     // await server.register(fastifySwagger, swaggerOptions);
     // await server.register(fastifySwaggerUi, swaggerUiOptions);
 
@@ -47,6 +52,14 @@ const restServer = async () => {
 
     await server.register(userRoutes, {
       prefix: '/user',
+    });
+
+    await server.register(imageRoutes, {
+      prefix: '/image',
+    });
+
+    await server.register(adminRoutes, {
+      prefix: '/admin',
     });
 
     await server.ready().then(() => {

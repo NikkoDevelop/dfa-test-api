@@ -1,11 +1,10 @@
 import { FastifyInstance } from 'fastify';
+import { DeleteImagesController } from '../controllers/admin/admin.controller';
 
-import { } from '../controllers/user.controller';
-
-const userRoutes = (fastify: FastifyInstance, opts: any, next: (err?: Error) => void) => {
-  fastify.delete('/images', DeleteImagesController);
+const adminRoutes = (fastify: FastifyInstance, opts: any, next: (err?: Error) => void) => {
+  fastify.delete('/', DeleteImagesController);
 
   next();
 };
 
-export default userRoutes;
+export default adminRoutes;

@@ -1,17 +1,19 @@
 import { FastifyInstance } from 'fastify';
 
-import { } from '../controllers/image/image.controller';
+import { CreateImageController, DeleteImageController, GetGaleryController, GetImageController, UpdateImageController, UploadImageController } from '../controllers/image/image.controller';
 
 const imageRoutes = (fastify: FastifyInstance, opts: any, next: (err?: Error) => void) => {
-  fastify.post('/add', AddImageController);
+  fastify.post('/upload', UploadImageController);
 
-  fastify.patch('/update', UpdateImageController);
+  fastify.post('/', CreateImageController);
 
-  fastify.delete('/delete', DeleteImageController);
+  fastify.patch('/', UpdateImageController);
 
-  fastify.get('/image', GetImageController);
+  fastify.delete('/', DeleteImageController);
 
-  fastify.get('/galery', GetGaleryController);
+  fastify.get('/:imageId', GetImageController);
+
+  fastify.get('/:id/galery', GetGaleryController);
 
   next();
 };

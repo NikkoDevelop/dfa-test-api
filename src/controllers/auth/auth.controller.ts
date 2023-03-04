@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import { FastifyReply, FastifyRequest } from 'fastify';
 
 import UserRepository from '../../repository/user.repository';

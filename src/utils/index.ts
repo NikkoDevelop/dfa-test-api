@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 export const validatePassword = (password: string): validationReturnType => {
   return {
     upper: (password.match(/[A-Z]/g) || []).length >= 1,
