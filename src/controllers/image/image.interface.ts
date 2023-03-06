@@ -5,8 +5,9 @@ export interface CreateImageDTO {
 }
 
 export interface UpdateImageDTO {
-    title?: string;
+    imageId: number;
     url?: string;
+    title?: string;
     shortDescription?: string;
 }
 

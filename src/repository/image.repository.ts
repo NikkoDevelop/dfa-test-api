@@ -54,7 +54,7 @@ class ImageRepository {
     });
   }
 
-  public async updateImage (userId: number, title?: string, url?: string, shortDescription?: string) {
+  public async updateImage (userId: number, imageId: number, title?: string, url?: string, shortDescription?: string) {
     const currentUser = await prisma.user.findUnique({
       where: {
         id: userId,
@@ -64,15 +64,15 @@ class ImageRepository {
       },
     });
 
-    const updatingImage = await prisma.image.findUnique({
-      where: {
-        url,
-      },
-    });
-
     if (!currentUser) {
       return 'User with privided id does not exist';
     }
+
+    const updatingImage = await prisma.image.findUnique({
+      where: {
+        id: imageId,
+      },
+    });
 
     return prisma.image.update({
       where: {

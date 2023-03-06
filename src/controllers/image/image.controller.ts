@@ -48,7 +48,7 @@ export const CreateImageController = async (req: FastifyRequest<{ Body: CreateIm
     if (typeof user === 'string') {
       reply.code(500).send(notAuthorized);
     } else {
-      const newImage = api.createImage(user.userId, req.body.title, req.body.url, req.body.shortDescription);
+      const newImage = await api.createImage(user.userId, req.body.title, req.body.url, req.body.shortDescription);
 
       reply.status(200).send(newImage);
     }
@@ -68,7 +68,7 @@ export const UpdateImageController = async (req: FastifyRequest<{ Body: UpdateIm
     if (typeof user === 'string') {
       reply.code(500).send(notAuthorized);
     } else {
-      const updatedImage = api.updateImage(user.userId, req.body.title, req.body.url, req.body.shortDescription);
+      const updatedImage = await api.updateImage(user.userId, req.body.imageId, req.body.title, req.body.url, req.body.shortDescription);
 
       reply.status(200).send(updatedImage);
     }
@@ -79,7 +79,7 @@ export const UpdateImageController = async (req: FastifyRequest<{ Body: UpdateIm
 
 export const DeleteImageController = async (req: FastifyRequest<{ Body: DeleteImageDTO }>, reply: FastifyReply) => {
   try {
-    const deleteImageReply = api.deleteImage(req.body.imageId);
+    const deleteImageReply = await api.deleteImage(req.body.imageId);
 
     reply.status(200).send(deleteImageReply);
   } catch (error) {
@@ -89,7 +89,7 @@ export const DeleteImageController = async (req: FastifyRequest<{ Body: DeleteIm
 
 export const GetImageController = async (req: FastifyRequest<{ Params: GetImageDTO }>, reply: FastifyReply) => {
   try {
-    const image = api.getImage(req.params.imageId);
+    const image = await api.getImage(Number(req.params.imageId));
 
     reply.status(200).send(image);
   } catch (error) {
@@ -99,7 +99,7 @@ export const GetImageController = async (req: FastifyRequest<{ Params: GetImageD
 
 export const GetGaleryController = async (req: FastifyRequest<{ Params: GetGaleryDTO }>, reply: FastifyReply) => {
   try {
-    const galery = api.getGalery(req.params.userId);
+    const galery = await api.getGalery(Number(req.params.userId));
 
     reply.status(200).send(galery);
   } catch (error) {

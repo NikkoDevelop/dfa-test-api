@@ -13,7 +13,7 @@ const imageRoutes = (fastify: FastifyInstance, opts: any, next: (err?: Error) =>
 
   fastify.get('/:imageId', GetImageController);
 
-  fastify.get('/:id/galery', GetGaleryController);
+  fastify.get('/:userId/galery', GetGaleryController);
 
   next();
 };
